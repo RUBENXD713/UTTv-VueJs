@@ -52,6 +52,7 @@ export default {
         .get(this.URL+'vi/index/?id='+this.idVideo)
           .then(response => {
             this.video = response.data
+            console.log(this.URL+'vi/index/?id='+this.idVideo)
           })
           .catch( e=> console.log(e))
     },getUserValidated(){

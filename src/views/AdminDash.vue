@@ -1,8 +1,10 @@
 <template>
     <div>
         <Header/>
+        <ModalHelp/>
         <b-nav tabs justified style="background-color: #cc0088; color:#000000;">
             <b-nav-item v-if="user.tipo == 2" v-on:click="changeNav(2)"><strong style="color:#000000;"  >Usuarios</strong></b-nav-item>
+            <b-nav-item v-if="user.tipo == 2" v-on:click="changeNav(5)"><strong style="color:#000000;"  >Permiso</strong></b-nav-item>
             <b-nav-item v-on:click="changeNav(3)"><strong style="color:#000000;" >Videos</strong></b-nav-item>
             <b-nav-item v-on:click="changeNav(4)"><strong style="color:#000000;" >Categorias</strong></b-nav-item>
             <b-nav-item v-on:click="changeNav(1)"><strong style="color:#000000;" >Creadores</strong></b-nav-item>
@@ -12,6 +14,7 @@
             <TableVideos v-if="nav == 3"/>
             <TableCategories v-if="nav == 4"/>
             <TableUsers v-if="nav == 2"/>
+            <TablaPermisos v-if="nav == 5"/>
         </div>
         <Creadores v-if="nav == 1"/>
         <Footer/>
@@ -26,6 +29,8 @@ import TableVideos from '@/components/TablaVideos.vue'
 import TableCategories from '@/components/TablaCategorias.vue'
 import Creadores from '@/components/creadores.vue'
 import TableUsers from '@/components/TablaUsers.vue'
+import TablaPermisos from '@/components/TablaPermisos.vue'
+import ModalHelp from '@/components/modalHelp.vue'
 import axios from "axios";
 export default {
     
@@ -37,7 +42,9 @@ export default {
         Creadores,
         TableVideos,
         TableCategories,
-        TableUsers
+        TableUsers,
+        TablaPermisos,
+        ModalHelp
     },
     data() {
         return{
@@ -63,7 +70,6 @@ export default {
     methods:{
         changeNav($num){
           this.nav=$num;
-          console.log(this.nav);
       },
     getUser(){
       

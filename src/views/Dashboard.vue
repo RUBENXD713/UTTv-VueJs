@@ -1,7 +1,6 @@
 <template>
     <div>
         <Header/>
-        <ModalHelp/>
         <br>
         <div class="container">
           <br>
@@ -18,7 +17,6 @@
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import CardVideo from '@/components/CardVideo.vue'
-import ModalHelp from '@/components/modalHelp.vue'
 import axios from "axios"
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
@@ -27,7 +25,6 @@ export default {
         Header,
         Footer,
         CardVideo,
-        ModalHelp
     },
     data() {
         return{

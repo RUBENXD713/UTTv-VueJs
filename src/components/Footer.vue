@@ -69,16 +69,16 @@
 
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
-              <a href="" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.facebook.com/ruben.barraza.3766" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
             </li>
             <li class="list-inline-item">
-              <a href="" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
+              <a href="https://github.com/RUBENXD713" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-github"></i></a>
             </li>
             <li class="list-inline-item">
-              <a href="" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.instagram.com/ruben_barraza731/" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
             </li>
             <li class="list-inline-item">
-              <a href="" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.youtube.com/channel/UCkzQZ_AF6WQYjugLNmk5KHA" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-youtube"></i></a>
             </li>
           </ul>
           

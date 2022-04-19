@@ -1,7 +1,7 @@
 <template>    
    <div>
      <div>
-       <h2>Carreras</h2>
+       <h2>Users</h2>
        <button v-on:click="botonNuevo()"  v-animate-css.click="'tada'" type="button" class="btn btn-success">{{botonText}}</button>
      </div>
      <div class="container" v-if="nuevo">
@@ -92,6 +92,27 @@
 
 
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
     </div>
 

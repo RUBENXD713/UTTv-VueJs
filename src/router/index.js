@@ -10,6 +10,7 @@ import VistaPorCarrera from '../views/VistaPorCarrera.vue'
 import VistaPorCarrera2 from '../views/VistaPorCarreraMeca.vue'
 import SubirVideo from '../views/SubirVideo.vue'
 import CodigoAcceso from '../views/CodigoAcceso.vue'
+import ElevarPermiso from '../views/ElevarPermiso.vue'
 import socket from '../views/socket.vue'
 
 Vue.use(VueRouter)
@@ -69,6 +70,11 @@ const routes = [
     path: '/socket',
     name: 'socket',
     component: socket
+  },
+  {
+    path: '/permisos',
+    name: 'permisos',
+    component: ElevarPermiso
   }
 ]
 
