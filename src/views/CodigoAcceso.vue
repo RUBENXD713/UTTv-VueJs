@@ -63,7 +63,7 @@ export default {
                 "codigo":this.codigo
               }
               axios
-              .post(process.env.VUE_APP_API_HOST+'us/login2',json,({
+              .post(process.env.VUE_APP_API_HOST+'us/permisoNuevo',json,({
               headers: {
                       'Authorization': `Bearer ${localStorage.token}`
                         }
@@ -72,7 +72,7 @@ export default {
               console.log(data)
               if(data.data == "continua"){
                     this.error=false;
-                    this.$router.push('dashboard');
+                    this.getUserValidated();
               }else{
                     this.error = true;
                     this.error_msg = data.data;
@@ -100,7 +100,7 @@ export default {
                   this.$router.push('dashboard');
                 }else{
                   console.log('socket');
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }, 

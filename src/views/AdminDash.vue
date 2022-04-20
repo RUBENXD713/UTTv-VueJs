@@ -104,7 +104,7 @@ export default {
                   console.log('validado');
                 }else{
                   console.log('socket');
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }

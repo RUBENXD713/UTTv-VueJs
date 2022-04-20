@@ -176,7 +176,6 @@ export default {
     this.getTodos()
     this.getCat()
     this.getCar()
-    console.log(this.todos)
   },
   methods:{
     botonNuevo(){

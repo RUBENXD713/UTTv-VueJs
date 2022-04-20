@@ -125,7 +125,7 @@ export default {
                 }else if (user.m2 == 0) {
                     this.$router.push('codigo');
                 }else{
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }

@@ -31,10 +31,11 @@ export default {
           URL:process.env.VUE_APP_API_HOST,
         }
     },
-    mounted() {
+    async mounted() {
       if (localStorage.token == ''){
         this.$router.push('/');
       }
+      console.log('mounted');
       this.getUserValidated();
     },
     method:{
@@ -46,7 +47,6 @@ export default {
                         }
                 })
                   .then(response => {
-                    console.log(response.data.Perfil);
                     this.returnToValidated(response.data.Perfil);
                   })
                   .catch( e=> console.log(e))
@@ -59,7 +59,7 @@ export default {
                   this.$router.push('dashboard');
                 }else{
                   console.log('socket');
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }

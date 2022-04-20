@@ -101,7 +101,7 @@ export default {
                 }else if (user.m2 == 1 && user.m3 == 1) {
                   console.log('validado');
                 }else{
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }

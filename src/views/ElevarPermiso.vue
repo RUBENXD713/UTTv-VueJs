@@ -15,6 +15,9 @@
       <input type="password" id="password" class="fadeIn third" name="login" placeholder="Codigo" v-model='codigo'>
       <input type="submit" class="fadeIn fourth" value="Enviar">
     </form>
+    <div class="alert alert-success" role="alert" v-if="validado">
+            {{error_msg}}
+    </div>
     <div class="alert alert-danger" role="alert" v-if="error">
             {{error_msg}}
     </div>
@@ -45,9 +48,12 @@ export default {
   data()
   {
     return {
+      user:null,
       codigo:'',
       error: false,
-      error_msg: ''
+      validado: false,
+      error_msg: '',
+      URL: process.env.VUE_APP_API_HOST,
               
     }
   },
@@ -56,7 +62,7 @@ export default {
       this.$router.push('/');
     }
     this.getUserValidated();
-    this.setPeticion();
+    this.getUser();
   }, 
    methods:{
         registro(){
@@ -79,17 +85,41 @@ export default {
                     this.error_msg = data.data;
                   }
                 })
-            },setPeticion(){
-              console.log(localStorage.token)
+            },getUser(){
+                axios
+                  .get(this.URL+ 'us/Perfil' ,{
+                  headers: {
+                        'Authorization': `Bearer ${localStorage.token}`
+                          }
+                  })
+                    .then(response => {
+                      console.log(response.data.Perfil)
+                      this.setPeticion(response.data.Perfil)
+                    })
+                    .catch( e=> console.log(e))
+            },
+            setPeticion($num){
+              let json = {
+                id:$num.id,
+                tipo:$num.tipo,
+              }
               axios
-                .post(process.env.VUE_APP_API_HOST+ 'us/solicitarPermiso',{
+                .post(process.env.VUE_APP_API_HOST+ 'us/solicitarPermiso',json,{
                 headers: {
                       'Authorization': `Bearer ${localStorage.token}`
                         }
                 })
                   .then(response => {
-                    this.user = response.data
-                    this.returnToValidated(response.data);
+                    console.log(response.data);
+                    if(response.data == 'Solicitud enviada'){
+                      this.validado = true;
+                      this.error=false;
+                      this.error_msg='Tu solicitud fue enviada, te responderemos en el menor tiempo posible, por medio del correo electronico';
+                    }else{
+                      this.validado = false;
+                      this.error=true;
+                      this.error_msg=response.data;
+                    }
                   })
                   .catch( e=> console.log(e))
             },
@@ -112,12 +142,11 @@ export default {
                 }else if (user.m2 == 1 && user.m3 == 1) {
                   console.log('validado');
                 }else{
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }, 
             pushLogin(){
-              localStorage.token = ''
               this.$router.push('/dashboard');
             }
 

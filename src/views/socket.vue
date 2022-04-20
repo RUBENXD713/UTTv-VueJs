@@ -77,7 +77,7 @@ export default {
                   this.$router.push('dashboard');
                 }else{
                   console.log('socket');
-                  this.$router.push('socket');
+                  this.$router.push('/socket');
                 }
  
             }, 
