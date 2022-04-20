@@ -32,46 +32,25 @@ export default {
         }
     },
     mounted() {
-        if (localStorage.token == ''){
-      this.$router.push('/');
-    }
-    this.getUserValidated();
+      if (localStorage.token == ''){
+        this.$router.push('/');
+      }
+      this.getUserValidated();
     },
     method:{
-        registro(){
-            let json = {
-                "codigo":this.codigo
-              }
-              axios
-              .post(process.env.VUE_APP_API_HOST+'us/login2',json,({
-              headers: {
-                      'Authorization': `Bearer ${localStorage.token}`
-                        }
-                }))
-              .then(data=>{
-              console.log(data)
-              if(data.data == "continua"){
-                    this.error=false;
-                    this.$router.push('dashboard');
-              }else{
-                    this.error = true;
-                    this.error_msg = data.data;
-                  }
-                })
-            },
             getUserValidated(){
               axios
-                .get(process.env.VUE_APP_API_HOST+ 'us/Perfil' ,{
+                .get(process.env.VUE_APP_API_HOST+'us/Perfil' ,{
                 headers: {
                       'Authorization': `Bearer ${localStorage.token}`
                         }
                 })
                   .then(response => {
-                    this.user = response.data.Perfil
+                    console.log(response.data.Perfil);
                     this.returnToValidated(response.data.Perfil);
                   })
                   .catch( e=> console.log(e))
-            }, 
+            },
             returnToValidated(user){
                 if (user.m2 == 0) {
                     console.log('validado');
@@ -84,7 +63,6 @@ export default {
                 }
  
             }
-
     }    
 }
 </script>
