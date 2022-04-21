@@ -53,12 +53,10 @@ export default {
             },
             returnToValidated(user){
                 if (user.m2 == 0) {
-                    console.log('validado');
+                    this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1) {
-                  console.log('dashboard')
-                  this.$router.push('dashboard');
+                  console.log('validado')
                 }else{
-                  console.log('socket');
                   this.$router.push('/socket');
                 }
  

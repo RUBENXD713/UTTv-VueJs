@@ -70,7 +70,7 @@ export default {
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {
-                  this.$router.push('');
+                  this.$router.push('/code');
                 }else if (user.m2 == 1 && user.m3 == 1) {
                   console.log('validado');
                 }else{

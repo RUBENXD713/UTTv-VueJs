@@ -100,10 +100,9 @@ export default {
             returnTo(user){
               if (user.m2 == 0) {
                     this.$router.push('codigo');
-                }else if (user.m2 == 1 && user.m3 == 1) {
+                }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 1) {
                   console.log('validado');
                 }else{
-                  console.log('socket');
                   this.$router.push('/socket');
                 }
  

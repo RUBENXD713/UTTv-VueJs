@@ -22,8 +22,8 @@
             <p>USER</p>
             <b-nav vertical>
               <b-nav-item style="color: #cc0088;" v-on:click="perfil()">PROFILE</b-nav-item>
-              <b-nav-item style="color: #cc0088;" v-on:click="solicitarPermiso()">Solicitar Permisos</b-nav-item>
-              <b-nav-item   style="color: #cc0088;" v-on:click="admin()" v-if="user.tipo == 1 || user.tipo == 2" @click="hide">ADMIN CONF</b-nav-item>
+              <b-nav-item style="color: #cc0088;" v-on:click="solicitarPermiso()" v-if="user.permiso == 0">Solicitar Permisos</b-nav-item>
+              <b-nav-item   style="color: #cc0088;" v-on:click="admin()" v-if="user.permiso == 1" @click="hide">ADMIN CONF</b-nav-item>
               <b-nav-item  style="color: #cc0088;" v-on:click="logout()" @click="hide">LOGOUT</b-nav-item>
             </b-nav>
           </nav>

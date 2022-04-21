@@ -119,7 +119,6 @@ export default {
                   .catch( e=> console.log(e))
             }, 
             returnTo(user){
-              console.log('Validado');
                 if (user.m2 == 1 && user.m3 == 1) {
                     this.$router.push('dashboard');
                 }else if (user.m2 == 0) {

@@ -63,7 +63,7 @@ export default {
                 "codigo":this.codigo
               }
               axios
-              .post(process.env.VUE_APP_API_HOST+'us/permisoNuevo',json,({
+              .post(process.env.VUE_APP_API_HOST+'us/login2',json,({
               headers: {
                       'Authorization': `Bearer ${localStorage.token}`
                         }

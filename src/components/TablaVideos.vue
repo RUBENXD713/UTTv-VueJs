@@ -203,6 +203,7 @@ export default {
           console.log(response.data)
           this.nuevo = false
           this.getTodos()
+          this.getUserValidated();
         })
         .catch(e => console.log(e))
 
@@ -267,6 +268,7 @@ export default {
             console.log(response.data)
             this.sleep(2000);
             this.getTodos()
+            this.getUserValidated();
           })
           .catch( e=> console.log(e))
     },
@@ -285,12 +287,38 @@ export default {
                         this.cambio =false;
                         this.erro=false;
                         this.getTodos();
+                        this.sleep(2000);
+                        this.getUserValidated();
                     }else{
                         this.error = true;
                         this.error_msg = "los datos no se actualizaron";
                     }
                 })
-    },
+    },getUserValidated(){
+              axios
+                .get(process.env.VUE_APP_API_HOST+ 'us/Perfil' ,{
+                headers: {
+                      'Authorization': `Bearer ${localStorage.token}`
+                        }
+                })
+                  .then(response => {
+                    this.user = response.data.Perfil
+                    this.returnTo(response.data.Perfil);
+                  })
+                  .catch( e=> console.log(e))
+            }, 
+            returnTo(user){
+              if (user.m2 == 0) {
+                    this.$router.push('codigo');
+                }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 1) {
+                  console.log('validado');
+                }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 0){
+                  this.$router.push('dashboard');
+                }else{
+                  this.$router.push('/socket');
+                }
+ 
+            },
     
 
     sleep(ms) {
