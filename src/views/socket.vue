@@ -3,6 +3,7 @@
     <h1>Favor de dar acceso desde la aplicacion movil</h1>
     <img src="../assets/Logo.png" height="40%" width="40%" />
     <h1>Una vez des acceso desde la app movil, te redirecionaremos automaticamente</h1>
+    <button>Evento</button>
   </div>
 </template>
 
@@ -12,6 +13,9 @@
 
 <script>
 import axios from "axios";
+import Echo from 'laravel-echo';
+
+window.Pusher = require('pusher-js');
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -22,19 +26,50 @@ export default {
   data()
   {
     return {
+      connection: null,
       codigo:'',
       error: false,
       error_msg: ''
               
     }
   },
-  async mounted() {
+  mounted() {
     if (localStorage.token == ''){
       this.$router.push('/');
     }
     this.getUserValidated();
-  }, 
+
+    window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '07598453',
+    wsHost: '127.0.0.1',
+    wsPort: 6001,
+    forceTLS: false,
+    disableStats: true
+});
+
+window.Echo.channel('channel-message').listen('socketValidate', (e)=>{
+  console.log(e);
+  this.getUserValidated();
+});
+  },/*created: function(){
+    console.log("Starting Connection to WebSocket Server");
+    this.connection = new WebSocket("http://127.0.0.1:6001")
+
+    this.connection.onopen = function(event){
+      console.log(event);
+      console.log("Successfully connected to WebSocket");
+    }
+
+    this.connection.onmessage = function(event){
+      console.log(event);
+    }
+  },*/ 
    methods:{
+        /*sendMessage: function(message){
+          console.log(this.connection);
+          this.connection.send(message);
+        },*/
         registro(){
             let json = {
                 "codigo":this.codigo
