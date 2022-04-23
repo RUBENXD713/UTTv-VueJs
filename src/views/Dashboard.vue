@@ -6,7 +6,7 @@
           <br>
             <div align="left"><h2>Videos</h2></div>
             <br>
-            <CardVideo v-animate-css="zoomIn"/>
+            <CardVideo/>
         </div>
         <Footer/>
     </div>
