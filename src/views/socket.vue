@@ -42,7 +42,7 @@ export default {
     window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '07598453',
-    wsHost: '127.0.0.1',
+    wsHost: '192.168.0.9',
     wsPort: 6001,
     forceTLS: false,
     disableStats: true
