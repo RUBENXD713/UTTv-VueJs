@@ -168,6 +168,8 @@ export default {
       nuevo:false,
       error:false,
       error_msg:"",
+      response:'',
+      err:'',
       videoNuevo:{descripcion:"",nombre:"",url:"",categoria:"",tipo:"",image:""},
       URL:process.env.VUE_APP_API_HOST,
     }
@@ -189,7 +191,7 @@ export default {
       }
      
     },print(){
-      console.log(this.videoNuevo)
+      //console.log(this.videoNuevo)
     },
 
     nuevoVideo(){
@@ -200,12 +202,12 @@ export default {
                 }
         })
         .then(response => {
-          console.log(response.data)
+          this.response = response
           this.nuevo = false
           this.getTodos()
           this.getUserValidated();
         })
-        .catch(e => console.log(e))
+        .catch(e => this.err=e)
 
         this.botonNuevo()
     },
@@ -217,7 +219,7 @@ export default {
           .then(response => {
             this.todos = response.data
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
     getCat(){
           axios
@@ -226,7 +228,7 @@ export default {
             this.categorias = response.data
             
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },getCar(){
       axios
         .get(this.URL+'car/index')
@@ -234,7 +236,7 @@ export default {
             this.Carreras = response.data
             
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -245,7 +247,7 @@ export default {
             this.video = response.data
             this.cambio = true
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
     getuno($num){
       axios
@@ -253,7 +255,7 @@ export default {
           .then(response => {
             this.video = response.data
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -265,12 +267,12 @@ export default {
                 }
         })
           .then(response => {
-            console.log(response.data)
+            this.response = response
             this.sleep(2000);
             this.getTodos()
             this.getUserValidated();
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -283,7 +285,7 @@ export default {
         })
                 .then(data=>{
                     if(data.data != "error"){
-                        console.log("datos actualizados");
+                        //console.log("datos actualizados");
                         this.cambio =false;
                         this.erro=false;
                         this.getTodos();
@@ -305,13 +307,13 @@ export default {
                     this.user = response.data.Perfil
                     this.returnTo(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnTo(user){
               if (user.m2 == 0) {
                     this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 1) {
-                  console.log('validado');
+                  //console.log('validado');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 0){
                   this.$router.push('dashboard');
                 }else{

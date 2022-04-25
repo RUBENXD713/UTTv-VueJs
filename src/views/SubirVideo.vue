@@ -79,6 +79,8 @@ export default {
       nuevo:false,
       error:false,
       error_msg:"",
+      err:'',
+      response:'',
       videoNuevo:{descripcion:"",nombre:"",url:"",categoria:"",tipo:"",image:""},
       URL:process.env.VUE_APP_API_HOST,
     }
@@ -101,11 +103,11 @@ export default {
         })
         .then(response => {
           if(response.data == null){
-            console.log('nada');
+            //console.log('nada');
           }
           this.nuevo = false
         })
-        .catch(e => console.log(e))
+        .catch(e => this.err=e)
         this.sleep(5000);
         this.$router.push('/dashboard');
     },
@@ -120,7 +122,7 @@ export default {
             this.categorias = response.data
             
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.error=e)
     },getCar(){
       axios
         .get(this.URL+'car/index')
@@ -128,7 +130,7 @@ export default {
             this.Carreras = response.data
             
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },getUserValidated(){
               axios
                 .get(process.env.VUE_APP_API_HOST+ 'us/Perfil' ,{
@@ -140,13 +142,13 @@ export default {
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {
                   this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1) {
-                  console.log('validado');
+                  //console.log('validado');
                 }else{
                   this.$router.push('/socket');
                 }

@@ -48,6 +48,7 @@ export default {
       codigo:'',
       error: false,
       error_msg: '',
+      err:'',
       user: null,
               
     }
@@ -63,7 +64,7 @@ export default {
             let json = {
                 "codigo":this.codigo
               }
-              console.log(this.user);
+              //console.log(this.user);
             fetch('https://api.ipify.org?format=json')
                     .then(x => x.json())
                     .then(({ ip }) => {
@@ -76,11 +77,11 @@ export default {
                                         }
                                 }))
                               .then(data=>{
-                                  console.log(data)
+                                  //console.log(data)
                                       if(data.data == "continua"){
                                             this.error=false;
                                             this.getUserValidated();
-                                            console.log('normal');
+                                            //console.log('normal');
                                       }else{
                                             this.error = true;
                                             this.error_msg = data.data;
@@ -96,11 +97,11 @@ export default {
                                         }
                                 }))
                               .then(data=>{
-                                  console.log(data)
+                                  //console.log(data)
                                       if(data.data == "continua"){
                                             this.error=false;
                                             this.getUserValidated();
-                                            console.log('vpn');
+                                            //console.log('vpn');
                                       }else{
                                             this.error = true;
                                             this.error_msg = data.data;
@@ -120,16 +121,16 @@ export default {
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {
-                    console.log('validado');
+                    //console.log('validado');
                 }else if (user.m2 == 1 && user.m3 == 1) {
-                  console.log('dashboard')
+                  //console.log('dashboard')
                   this.$router.push('dashboard');
                 }else{
-                  console.log('socket');
+                  //console.log('socket');
                   this.$router.push('/socket');
                 }
  

@@ -109,6 +109,8 @@ export default {
       categoriaNueva:{nombre:"",descripcion:""},
       URL:process.env.VUE_APP_API_HOST,
       response:null,
+      resp:'',
+      err:'',
     }
   }, 
   mounted() {
@@ -140,7 +142,7 @@ export default {
           this.getTodos()
           this.getUserValidated();
         })
-        .catch(e => console.log(e))
+        .catch(e => this.err=e)
 
         this.botonNuevo()
     },
@@ -151,7 +153,7 @@ export default {
           .then(response => {
             this.todos = response.data
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -162,7 +164,7 @@ export default {
             this.categoria = response.data
             this.cambio = true
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
     deleteOne($num){
@@ -177,7 +179,7 @@ export default {
             this.getTodos();
             this.getUserValidated();
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
     update(){
@@ -189,7 +191,7 @@ export default {
         })
                 .then(data=>{
                     if(data.data != "error"){
-                        console.log("datos actualizados");
+                        //console.log("datos actualizados");
                         this.cambio =false;
                         this.erro=false;
                         this.getTodos();
@@ -210,13 +212,13 @@ export default {
                     this.user = response.data.Perfil
                     this.returnTo(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnTo(user){
               if (user.m2 == 0) {
                     this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 1) {
-                  console.log('validado');
+                  //console.log('validado');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 0){
                   this.$router.push('dashboard');
                 }else{

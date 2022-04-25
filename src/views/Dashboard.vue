@@ -50,6 +50,7 @@ export default {
           cambio:false,
           nuevo:false,
           error:false,
+          err:'',
           error_msg:"",
           URL:process.env.VUE_APP_API_HOST,
         }
@@ -76,13 +77,13 @@ export default {
                   .then(response => {
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             },
             returnToValidated(user){
                 if (user.m2 == 0) {
                     this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1) {
-                  console.log('validado')
+                  //console.log('validado')
                 }else{
                   this.$router.push('/socket');
                 }
@@ -93,7 +94,7 @@ export default {
           .then(response => {
             this.todos = response.data
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
       goToReproduction($id){
         this.$router.push('/reproductor/'+$id);

@@ -51,7 +51,8 @@ export default {
       email:'',
       password:'',
       error: false,
-      error_msg: ''
+      error_msg: '',
+      err:''
               
     }
   },
@@ -92,7 +93,7 @@ export default {
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {

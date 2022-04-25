@@ -69,6 +69,8 @@ export default {
       todos:null,
       error:false,
       error_msg:"",
+      err:'',
+      response:'',
       URL:process.env.VUE_APP_API_HOST,
     }
   }, 
@@ -86,7 +88,7 @@ export default {
           .then(response => {
             this.todos = response.data.Perfil
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -102,9 +104,9 @@ export default {
                 }
         })
           .then(response => {
-            console.log(response)
+            this.response = response
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
 
           this.eliminarCodigo(json.id);
     },
@@ -117,10 +119,10 @@ export default {
                 }
         })
           .then(response => {
-            console.log(response)
+            this.response = response
             this.getTodos()
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     }
 
   }

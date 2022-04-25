@@ -58,6 +58,7 @@ export default {
     data(){
         return{
             user:null,
+            err:'',
             URL:process.env.VUE_APP_API_HOST,
         }
     },
@@ -77,11 +78,11 @@ export default {
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 1 && user.m3 == 1) {
-                    console.log('validado');
+                    //console.log('validado');
                 }else if (user.m2 == 0) {
                     this.$router.push('codigo');
                 }else{

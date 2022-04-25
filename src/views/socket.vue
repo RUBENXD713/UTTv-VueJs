@@ -28,7 +28,9 @@ export default {
       connection: null,
       codigo:'',
       error: false,
-      error_msg: ''
+      error_msg: '',
+      err:'',
+      message:'',
               
     }
   },
@@ -48,7 +50,8 @@ export default {
 });
 
 window.Echo.channel('channel-message').listen('socketValidate', (e)=>{
-  console.log(e);
+  //console.log(e);
+  this.message = e;
   this.getUserValidated();
 });
   },/*created: function(){
@@ -80,7 +83,7 @@ window.Echo.channel('channel-message').listen('socketValidate', (e)=>{
                         }
                 }))
               .then(data=>{
-              console.log(data)
+              //console.log(data)
               if(data.data == "continua"){
                     this.error=false;
                     this.$router.push('dashboard');
@@ -101,7 +104,7 @@ window.Echo.channel('channel-message').listen('socketValidate', (e)=>{
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {
@@ -109,7 +112,7 @@ window.Echo.channel('channel-message').listen('socketValidate', (e)=>{
                 }else if (user.m2 == 1 && user.m3 == 1) {
                   this.$router.push('dashboard');
                 }else{
-                  console.log('socket');
+                  //console.log('socket');
                 }
  
             }, 

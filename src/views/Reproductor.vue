@@ -33,6 +33,7 @@ export default {
       video:null,
       error:false,
       error_msg:"",
+      err:'',
       idVideo:null,
       URL:process.env.VUE_APP_API_HOST,
     }
@@ -52,9 +53,9 @@ export default {
         .get(this.URL+'vi/index/?id='+this.idVideo)
           .then(response => {
             this.video = response.data
-            console.log(this.URL+'vi/index/?id='+this.idVideo)
+            //console.log(this.URL+'vi/index/?id='+this.idVideo)
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err = e)
     },getUserValidated(){
               axios
                 .get(process.env.VUE_APP_API_HOST+ 'us/Perfil' ,{
@@ -66,13 +67,13 @@ export default {
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {
                   this.$router.push('/code');
                 }else if (user.m2 == 1 && user.m3 == 1) {
-                  console.log('validado');
+                  //console.log('validado');
                 }else{
                   this.$router.push('/socket');
                 }

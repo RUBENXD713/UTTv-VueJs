@@ -49,13 +49,14 @@ export default {
       password:'',
       error: false,
       error_msg: '',
+      err:'',
       user: null,        
     }
   },
   mounted() {
-    console.log('mounted');
+    //console.log('mounted');
     if(localStorage.token){
-        console.log("existe");
+        //console.log("existe");
       }else{
         localStorage.token = "";
       }
@@ -97,7 +98,7 @@ export default {
                 .then(response => {
                     this.user = response.data.Perfil
                 })
-                .catch( e=> console.log(e))
+                .catch( e=> this.err=e)
                 if(this.user.tipo == 0)
                 {
                   this.$router.push('/dashboard');
@@ -116,7 +117,7 @@ export default {
                     this.user = response.data.Perfil
                     this.returnTo(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnTo(user){
                 if (user.m2 == 1 && user.m3 == 1) {

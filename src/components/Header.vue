@@ -53,6 +53,8 @@ export default {
       error:false,
       carrera:"",
       error_msg:"",
+      response:'',
+      err:'',
       URL:process.env.VUE_APP_API_HOST,
     }
   }, 
@@ -71,9 +73,9 @@ export default {
                 }
         })
           .then(response => {
-            console.log(response.data)
+            this.response=response.data
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
       localStorage.token = ''
       this.$router.push('/');
     },
@@ -102,7 +104,7 @@ export default {
           .then(response => {
             this.user = response.data.Perfil
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     }
   }
 }

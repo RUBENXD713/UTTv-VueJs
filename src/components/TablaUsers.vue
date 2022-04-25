@@ -131,6 +131,8 @@ export default {
       nuevo:false,
       error:false,
       error_msg:"",
+      response:'',
+      err:'',
       usuarioNuevo:{email:"",password:"",name:""},
       URL:process.env.VUE_APP_API_HOST,
     }
@@ -159,11 +161,11 @@ export default {
                 }
         })
         .then(response => {
-          console.log(response.data.name)
+          this.response = response
           this.nuevo = false
           this.getTodos()
         })
-        .catch(e => console.log(e))
+        .catch(e => this.err=e)
 
         this.botonNuevo()
     },
@@ -178,9 +180,9 @@ export default {
         })
           .then(response => {
             this.todos = response.data.Perfil
-            console.log(this.todos);
+            this.response= response
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -195,7 +197,7 @@ export default {
             this.usuario = response.data[0]
             this.cambio = true
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
     deleteOne($num){
@@ -206,10 +208,10 @@ export default {
                 }
         })
           .then(response => {
-            console.log(response.data)
+            this.response = response
             this.getTodos()
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
     },
 
 
@@ -222,7 +224,7 @@ export default {
         })
                 .then(data=>{
                     if(data.data != "Algo salio mal"){
-                        console.log("datos actualizados");
+                        //console.log("datos actualizados");
                         this.cambio =false;
                         this.erro=false;
                         this.getTodos();

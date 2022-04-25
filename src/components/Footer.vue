@@ -103,6 +103,12 @@ export default {
   name: 'Footer',
   props: {
     msg: String
+  },data() {
+    return{
+      response:'',
+      error:'',
+      URL:process.env.VUE_APP_API_HOST,
+    }
   },methods:{
     logout(){
       axios
@@ -112,9 +118,9 @@ export default {
                 }
         })
           .then(response => {
-            console.log(response.data)
+            this.response = response.data
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.error = e)
       localStorage.token = ''
       this.$router.push('/');
     },

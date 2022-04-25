@@ -53,12 +53,14 @@ export default {
         error:false,
         error_msg:"",
         ip:null,
+        err:'',
+        response:'',
         URL:process.env.VUE_APP_API_HOST,
     }
     },
     async mounted() {
         if(localStorage.token){
-        console.log("existe");
+        //console.log("existe");
       }else{
         localStorage.token = "";
       }
@@ -83,7 +85,7 @@ export default {
           .then(response => {
             this.user = response.data.Perfil
           })
-          .catch( e=> console.log(e))
+          .catch( e=> this.err=e)
 
 
         fetch('https://api.ipify.org?format=json')
@@ -103,13 +105,13 @@ export default {
                     this.user = response.data.Perfil
                     this.returnTo(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnTo(user){
               if (user.m2 == 0) {
                     this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 1) {
-                  console.log('validado');
+                  //console.log('validado');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 0) {
                   this.$router.push('/dashboard');
                 }else{

@@ -53,6 +53,7 @@ export default {
       error: false,
       validado: false,
       error_msg: '',
+      err:'',
       URL: process.env.VUE_APP_API_HOST,
               
     }
@@ -76,7 +77,7 @@ export default {
                         }
                 }))
               .then(data=>{
-              console.log(data)
+              //console.log(data)
               if(data.data == "continua"){
                     this.error=false;
                     this.$router.push('dashboard');
@@ -96,7 +97,7 @@ export default {
                       //console.log(response.data.Perfil)
                       this.setPeticion(response.data.Perfil)
                     })
-                    .catch( e=> console.log(e))
+                    .catch( e=> this.err=e)
             },
             setPeticion($num){
               let json = {
@@ -121,7 +122,7 @@ export default {
                       this.error_msg=response.data;
                     }
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             },
             getUserValidated(){
               axios
@@ -134,13 +135,13 @@ export default {
                     this.user = response.data.Perfil
                     this.returnToValidated(response.data.Perfil);
                   })
-                  .catch( e=> console.log(e))
+                  .catch( e=> this.err=e)
             }, 
             returnToValidated(user){
                 if (user.m2 == 0) {
                   this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso ==0) {
-                  console.log('validado');
+                  //console.log('validado');
                 }else{
                   this.$router.push('/socket');
                 }
