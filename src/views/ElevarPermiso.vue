@@ -93,7 +93,7 @@ export default {
                           }
                   })
                     .then(response => {
-                      console.log(response.data.Perfil)
+                      //console.log(response.data.Perfil)
                       this.setPeticion(response.data.Perfil)
                     })
                     .catch( e=> console.log(e))
@@ -110,7 +110,7 @@ export default {
                         }
                 })
                   .then(response => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     if(response.data == 'Solicitud enviada'){
                       this.validado = true;
                       this.error=false;

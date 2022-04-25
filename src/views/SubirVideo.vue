@@ -100,7 +100,9 @@ export default {
                 }
         })
         .then(response => {
-          console.log(response.data)
+          if(response.data == null){
+            console.log('nada');
+          }
           this.nuevo = false
         })
         .catch(e => console.log(e))

@@ -20,7 +20,7 @@
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
         <h5 class="text-uppercase mb-4 font-weight-bold" style="color:#000000;">Links</h5>
       <p>
-        <a class="text-white" style="text-decoration: none;" href="/" >Home</a>
+        <a class="text-white" style="text-decoration: none;" href="/dashboard" >Home</a>
       </p>
       <p>
         <a class="text-white" style="text-decoration: none;" href="/carrera2">Mecatronica</a>

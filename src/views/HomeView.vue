@@ -73,7 +73,7 @@ export default {
               axios
               .post(process.env.VUE_APP_API_HOST+'us/login',json)
               .then(data=>{
-              console.log(data)
+              //console.log(data)
               if(data.data != "datos incorrectos"){
                     localStorage.token = data.data.token
                     this.error=false;

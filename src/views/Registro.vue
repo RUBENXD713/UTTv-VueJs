@@ -71,7 +71,7 @@ export default {
               axios
               .post(process.env.VUE_APP_API_HOST+'us/Registro',json)
               .then(data=>{
-              console.log(data)
+              //console.log(data)
               if(data.data != "Error al Insertar"){
                     this.error=false;
                     this.$router.push('/');
