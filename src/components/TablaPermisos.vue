@@ -23,7 +23,7 @@
               <td v-if="usuarios.tipo == 2">ADMIN</td>
               <td v-if="usuarios.tipo == 1">SUPER</td>
               <td v-if="usuarios.tipo == 0">COMUN</td>
-              <td><i class="material-icons button edit" v-on:click="genCode(1)">DarPermiso</i></td>
+              <td><i class="material-icons button edit" v-on:click="genCode(usuarios.user)">DarPermiso</i></td>
               <td><i class="material-icons button delete" v-on:click="eliminarCodigo(usuarios.user)">DenegarPermiso</i></td>
             </tr>
           </tbody>
@@ -93,7 +93,7 @@ export default {
     genCode($num){
       console.log('num:'+$num)
       let json = {
-                "id":1
+                "id":$num
               }
       axios
         .post(this.URL+'us/generarCodigo',json,{

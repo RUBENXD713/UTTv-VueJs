@@ -64,6 +64,16 @@ export default {
       this.$router.push('/dashboard')
     },
     logout(){
+      axios
+        .delete(this.URL+'us/LogOut',{
+        headers: {
+              'Authorization': `Bearer ${localStorage.token}`
+                }
+        })
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch( e=> console.log(e))
       localStorage.token = ''
       this.$router.push('/');
     },

@@ -4,7 +4,7 @@
         <ModalHelp/>
         <b-nav tabs justified style="background-color: #cc0088; color:#000000;">
             <b-nav-item v-if="user.tipo == 2" v-on:click="changeNav(2)"><strong style="color:#000000;"  >Usuarios</strong></b-nav-item>
-            <b-nav-item v-if="user.tipo == 2" v-on:click="changeNav(5)"><strong style="color:#000000;"  >Permiso</strong></b-nav-item>
+            <b-nav-item v-if="user.tipo == 2 && ip == '157.245.1.202'" v-on:click="changeNav(5)"><strong style="color:#000000;"  >Permiso</strong></b-nav-item>
             <b-nav-item v-on:click="changeNav(3)"><strong style="color:#000000;" >Videos</strong></b-nav-item>
             <b-nav-item v-on:click="changeNav(4)"><strong style="color:#000000;" >Categorias</strong></b-nav-item>
             <b-nav-item v-on:click="changeNav(1)"><strong style="color:#000000;" >Creadores</strong></b-nav-item>
@@ -52,6 +52,7 @@ export default {
         user:null,
         error:false,
         error_msg:"",
+        ip:null,
         URL:process.env.VUE_APP_API_HOST,
     }
     },
@@ -83,6 +84,13 @@ export default {
             this.user = response.data.Perfil
           })
           .catch( e=> console.log(e))
+
+
+        fetch('https://api.ipify.org?format=json')
+            .then(x => x.json())
+            .then(({ ip }) => {
+                this.ip = ip;
+          });
     },
             getUserValidated(){
               axios
@@ -102,6 +110,8 @@ export default {
                     this.$router.push('codigo');
                 }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 1) {
                   console.log('validado');
+                }else if (user.m2 == 1 && user.m3 == 1 && user.permiso == 0) {
+                  this.$router.push('/dashboard');
                 }else{
                   this.$router.push('/socket');
                 }

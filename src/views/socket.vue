@@ -3,7 +3,6 @@
     <h1>Favor de dar acceso desde la aplicacion movil</h1>
     <img src="../assets/Logo.png" height="40%" width="40%" />
     <h1>Una vez des acceso desde la app movil, te redirecionaremos automaticamente</h1>
-    <button>Evento</button>
   </div>
 </template>
 

@@ -47,7 +47,8 @@ export default {
     return {
       codigo:'',
       error: false,
-      error_msg: ''
+      error_msg: '',
+      user: null,
               
     }
   },
@@ -62,22 +63,51 @@ export default {
             let json = {
                 "codigo":this.codigo
               }
-              axios
-              .post(process.env.VUE_APP_API_HOST+'us/login2',json,({
-              headers: {
-                      'Authorization': `Bearer ${localStorage.token}`
-                        }
-                }))
-              .then(data=>{
-              console.log(data)
-              if(data.data == "continua"){
-                    this.error=false;
-                    this.getUserValidated();
-              }else{
-                    this.error = true;
-                    this.error_msg = data.data;
-                  }
-                })
+              console.log(this.user);
+            fetch('https://api.ipify.org?format=json')
+                    .then(x => x.json())
+                    .then(({ ip }) => {
+                        if(ip != '157.245.1.202'){
+                          
+                            axios
+                              .post(process.env.VUE_APP_API_HOST+'us/login2',json,({
+                              headers: {
+                                      'Authorization': `Bearer ${localStorage.token}`
+                                        }
+                                }))
+                              .then(data=>{
+                                  console.log(data)
+                                      if(data.data == "continua"){
+                                            this.error=false;
+                                            this.getUserValidated();
+                                            console.log('normal');
+                                      }else{
+                                            this.error = true;
+                                            this.error_msg = data.data;
+                                          }
+                                    })
+
+
+                    }else{
+                        axios
+                              .post(process.env.VUE_APP_API_HOST+'us/loginVPN',json,({
+                              headers: {
+                                      'Authorization': `Bearer ${localStorage.token}`
+                                        }
+                                }))
+                              .then(data=>{
+                                  console.log(data)
+                                      if(data.data == "continua"){
+                                            this.error=false;
+                                            this.getUserValidated();
+                                            console.log('vpn');
+                                      }else{
+                                            this.error = true;
+                                            this.error_msg = data.data;
+                                          }
+                                    })
+                    }
+                });
             },
             getUserValidated(){
               axios

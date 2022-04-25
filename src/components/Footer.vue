@@ -97,6 +97,7 @@
 
 
 <script>
+import axios from "axios";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Footer',
@@ -104,6 +105,16 @@ export default {
     msg: String
   },methods:{
     logout(){
+      axios
+        .delete(this.URL+'us/LogOut',{
+        headers: {
+              'Authorization': `Bearer ${localStorage.token}`
+                }
+        })
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch( e=> console.log(e))
       localStorage.token = ''
       this.$router.push('/');
     },
